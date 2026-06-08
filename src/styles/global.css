@@ -135,6 +135,23 @@ a {
   opacity: 1;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.press-link {
+  color: var(--navy);
+  font-size: 0.88rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.press-link:hover {
+  color: var(--blue);
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -600,8 +617,29 @@ textarea {
     font-size: 0.96rem;
   }
 
-  .button {
+  body .button {
     width: 100%;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav .button {
+    width: auto;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 0.86rem;
+  }
+
+  .press-link {
+    font-size: 0.82rem;
   }
 
   .hero-actions,
