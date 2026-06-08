@@ -278,7 +278,7 @@ import '../styles/global.css';
         }
 
         winGrid.innerHTML = wins.map((win) => `
-          <article class="win-card">
+          <a class="win-card" href="/win?id=${encodeURIComponent(win.id)}" aria-label="Open ${escapeHtml(win.firstName)}'s AI Win">
             <div>
               <div class="win-meta">
                 <span class="pill ${win.featured ? 'pill-yellow' : ''}">${categoryLabel(win.category)}</span>
@@ -287,7 +287,7 @@ import '../styles/global.css';
               <p class="win-quote">"${escapeHtml(win.quote)}"</p>
             </div>
             <p class="win-person">${escapeHtml(win.firstName)}${win.location ? ` - ${escapeHtml(win.location)}` : ''}</p>
-          </article>
+          </a>
         `).join('');
       }
 
