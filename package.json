@@ -1,0 +1,29 @@
+{
+  "name": "10millionwins-site",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Public AI Wins submission, sharing, and moderation system for 10 Million AI Wins.",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "pages:dev": "npm run build && wrangler pages dev dist --d1 DB=10millionwins-db --compatibility-date=2026-06-08",
+    "db:migrate:local": "wrangler d1 migrations apply 10millionwins-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply 10millionwins-db --remote",
+    "admin": "node admin/server.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.2",
+    "astro": "6.3.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20260608.1",
+    "typescript": "5.9.3",
+    "wrangler": "4.98.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

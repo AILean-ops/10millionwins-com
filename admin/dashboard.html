@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10 Million AI Wins Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #07172f;
+        --ink: #172033;
+        --muted: #637083;
+        --blue: #2161ff;
+        --yellow: #ffd23f;
+        --orange: #ff7a1a;
+        --paper: #f7f8fb;
+        --white: #ffffff;
+        --green: #12b886;
+        --red: #e03b3f;
+        --line: rgba(7, 23, 47, 0.12);
+        --shadow: 0 16px 48px rgba(7, 23, 47, 0.12);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, system-ui, sans-serif;
+        letter-spacing: 0;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255,255,255,0.94);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(16px);
+      }
+      .bar, main {
+        width: min(1280px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+      .bar {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 950;
+        color: var(--navy);
+      }
+      .mark {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        border: 3px solid var(--navy);
+        background: radial-gradient(circle at 35% 25%, #fff, var(--yellow) 42%, var(--orange));
+        box-shadow: 5px 5px 0 var(--navy);
+        font-family: Anton, Impact, sans-serif;
+      }
+      main {
+        padding: 30px 0 60px;
+      }
+      .hero {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 22px;
+      }
+      h1 {
+        margin: 0;
+        color: var(--navy);
+        font-family: Anton, Impact, sans-serif;
+        font-size: clamp(3rem, 7vw, 6rem);
+        line-height: 0.92;
+        text-transform: uppercase;
+      }
+      .muted {
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .tabs, .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      button, select, input, textarea {
+        font: inherit;
+        letter-spacing: 0;
+      }
+      button, .tab {
+        min-height: 42px;
+        padding: 10px 14px;
+        border: 2px solid var(--navy);
+        border-radius: 999px;
+        background: var(--white);
+        color: var(--navy);
+        font-weight: 900;
+        cursor: pointer;
+      }
+      button.primary, .tab.active {
+        background: var(--yellow);
+        box-shadow: 4px 4px 0 var(--navy);
+      }
+      button.danger {
+        background: #fff1f1;
+        color: #8f1518;
+      }
+      button.dark {
+        background: var(--navy);
+        color: var(--white);
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(120px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+      }
+      .stat, .submission {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+      .stat {
+        padding: 16px;
+      }
+      .stat strong {
+        display: block;
+        color: var(--navy);
+        font-size: 2rem;
+        line-height: 1;
+      }
+      .stat span {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+      .queue {
+        display: grid;
+        gap: 14px;
+      }
+      .submission {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 16px;
+        padding: 18px;
+      }
+      .meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 9px;
+        border-radius: 999px;
+        background: #edf3ff;
+        color: var(--navy);
+        font-size: 0.78rem;
+        font-weight: 900;
+      }
+      .pill.yellow { background: var(--yellow); }
+      .pill.green { background: #dff8ef; color: #08724f; }
+      .pill.red { background: #ffe8e8; color: #9d1d21; }
+      .quote {
+        color: var(--navy);
+        font-size: 1.26rem;
+        font-weight: 900;
+        line-height: 1.34;
+      }
+      .raw {
+        color: var(--muted);
+        font-weight: 650;
+      }
+      .edit-grid {
+        display: grid;
+        gap: 9px;
+      }
+      .edit-grid input, .edit-grid textarea {
+        width: 100%;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        padding: 9px 10px;
+      }
+      .edit-grid textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+      .caption {
+        width: 100%;
+        min-height: 92px;
+        margin-top: 10px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        padding: 10px;
+        color: var(--ink);
+      }
+      .empty {
+        padding: 28px;
+        border: 2px dashed var(--line);
+        border-radius: 16px;
+        text-align: center;
+        color: var(--muted);
+        font-weight: 900;
+      }
+      @media (max-width: 960px) {
+        .hero, .bar { display: block; }
+        .stats, .submission { grid-template-columns: 1fr; }
+        .tabs { margin-top: 14px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="bar">
+        <div class="brand"><span class="mark">10M</span><span>10 Million AI Wins Admin</span></div>
+        <button class="dark" id="refresh">Refresh</button>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Review Queue</h1>
+          <p class="muted">Approve the good ones, reject the junk, and mark the strongest stories Promote.</p>
+        </div>
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-status="pending">Pending</button>
+          <button class="tab" data-status="approved">Approved</button>
+          <button class="tab" data-status="promote">Promote</button>
+          <button class="tab" data-status="rejected">Rejected</button>
+          <button class="tab" data-status="all">All</button>
+        </div>
+      </section>
+      <section class="stats" id="stats"></section>
+      <section class="queue" id="queue"><div class="empty">Loading submissions...</div></section>
+    </main>
+
+    <script>
+      const queue = document.querySelector('#queue');
+      const stats = document.querySelector('#stats');
+      const tabs = document.querySelector('#tabs');
+      const refresh = document.querySelector('#refresh');
+      let activeStatus = 'pending';
+
+      function escapeHtml(value) {
+        return String(value || '').replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[char]);
+      }
+
+      function label(value) {
+        return String(value || '').replace(/-/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
+      }
+
+      function caption(item) {
+        return `${item.first_name} reported an AI Win: "${item.quote}"\n\nJoin the movement: https://10millionwins.com`;
+      }
+
+      function renderStats(data) {
+        const fields = ['total', 'pending', 'approved', 'rejected', 'promote'];
+        stats.innerHTML = fields.map((field) => `
+          <div class="stat"><strong>${Number(data[field] || 0).toLocaleString()}</strong><span>${field}</span></div>
+        `).join('');
+      }
+
+      function renderQueue(items) {
+        if (!items.length) {
+          queue.innerHTML = '<div class="empty">Nothing in this queue.</div>';
+          return;
+        }
+        queue.innerHTML = items.map((item) => `
+          <article class="submission" data-id="${item.public_id}">
+            <div>
+              <div class="meta">
+                <span class="pill ${item.status === 'approved' ? 'green' : item.status === 'rejected' ? 'red' : ''}">${label(item.status)}</span>
+                <span class="pill">${label(item.category)}</span>
+                ${item.promote ? '<span class="pill yellow">Promote</span>' : ''}
+                ${item.featured ? '<span class="pill yellow">Featured</span>' : ''}
+              </div>
+              <p class="quote">"${escapeHtml(item.quote)}"</p>
+              <p class="raw"><strong>${escapeHtml(item.first_name)}</strong>${item.location ? ` - ${escapeHtml(item.location)}` : ''}${item.role ? ` - ${escapeHtml(item.role)}` : ''}</p>
+              <p class="raw">${escapeHtml(item.win_text)}</p>
+              ${item.outcome_text ? `<p class="raw">${escapeHtml(item.outcome_text)}</p>` : ''}
+              <textarea class="caption" readonly>${escapeHtml(caption(item))}</textarea>
+            </div>
+            <div class="edit-grid">
+              <input name="firstName" value="${escapeHtml(item.first_name)}" />
+              <input name="location" value="${escapeHtml(item.location || '')}" />
+              <input name="role" value="${escapeHtml(item.role || '')}" />
+              <input name="category" value="${escapeHtml(item.category)}" />
+              <textarea name="winText">${escapeHtml(item.win_text)}</textarea>
+              <textarea name="outcomeText">${escapeHtml(item.outcome_text || '')}</textarea>
+              <textarea name="quote">${escapeHtml(item.quote)}</textarea>
+              <div class="actions">
+                <button class="primary" data-action="approve">Approve</button>
+                <button class="danger" data-action="reject">Reject</button>
+                <button data-action="${item.promote ? 'unpromote' : 'promote'}">${item.promote ? 'Unpromote' : 'Promote!'}</button>
+                <button data-action="${item.featured ? 'unfeature' : 'feature'}">${item.featured ? 'Unfeature' : 'Feature'}</button>
+                <button data-action="edit">Save Edit</button>
+                <button data-copy>Copy Caption</button>
+              </div>
+            </div>
+          </article>
+        `).join('');
+      }
+
+      async function load() {
+        queue.innerHTML = '<div class="empty">Loading submissions...</div>';
+        const res = await fetch(`/admin-api/submissions?status=${activeStatus}`);
+        const data = await res.json();
+        if (!res.ok) {
+          queue.innerHTML = `<div class="empty">${escapeHtml(data.error || 'Unable to load queue.')}</div>`;
+          return;
+        }
+        renderStats(data.stats || {});
+        renderQueue(data.submissions || []);
+      }
+
+      async function patch(id, body) {
+        const res = await fetch(`/admin-api/submissions/${id}`, {
+          method: 'PATCH',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          alert(data.error || 'Update failed.');
+          return;
+        }
+        await load();
+      }
+
+      tabs.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-status]');
+        if (!button) return;
+        activeStatus = button.dataset.status;
+        document.querySelectorAll('.tab').forEach((tab) => tab.classList.toggle('active', tab === button));
+        load();
+      });
+
+      queue.addEventListener('click', async (event) => {
+        const copy = event.target.closest('[data-copy]');
+        if (copy) {
+          const card = copy.closest('.submission');
+          await navigator.clipboard.writeText(card.querySelector('.caption').value);
+          copy.textContent = 'Copied';
+          window.setTimeout(() => copy.textContent = 'Copy Caption', 1200);
+          return;
+        }
+        const button = event.target.closest('[data-action]');
+        if (!button) return;
+        const card = button.closest('.submission');
+        const id = card.dataset.id;
+        const action = button.dataset.action;
+        if (action === 'edit') {
+          const get = (name) => card.querySelector(`[name="${name}"]`).value;
+          await patch(id, {
+            action,
+            firstName: get('firstName'),
+            location: get('location'),
+            role: get('role'),
+            category: get('category'),
+            winText: get('winText'),
+            outcomeText: get('outcomeText'),
+            quote: get('quote')
+          });
+        } else {
+          await patch(id, { action });
+        }
+      });
+
+      refresh.addEventListener('click', load);
+      load();
+    </script>
+  </body>
+</html>

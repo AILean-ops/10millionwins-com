@@ -1,0 +1,377 @@
+---
+import '../styles/global.css';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10 Million AI Wins | Real People. Real Wins.</title>
+    <meta name="description" content="Report your AI Win, create a branded share card, and help America see practical AI working for everyday people." />
+    <meta property="og:title" content="10 Million AI Wins" />
+    <meta property="og:description" content="Real people. Real AI wins. Help build the public proof." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="announcement">Help America see AI working in ordinary life, one real win at a time.</div>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/" class="brand" aria-label="10 Million AI Wins home">
+          <span class="brand-mark">10M</span>
+          <span>10 Million AI Wins</span>
+        </a>
+        <div class="nav-links">
+          <a href="#submit">Submit a Win</a>
+          <a href="#wall">Win Wall</a>
+          <a href="#how">How It Works</a>
+        </div>
+        <a href="#submit" class="button">Report Your Win</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-media">
+          <img src="/images/hero-community-ai-workshop.jpg" alt="Everyday people learning practical AI together" />
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow"><span></span>Real people. Real AI wins.</p>
+            <h1>10 Million AI Wins</h1>
+            <p class="hero-copy">A public wall of practical, confidence-building AI wins from everyday Americans, small businesses, families, teachers, creators, and first-time users.</p>
+            <div class="hero-actions">
+              <a href="#submit" class="button">Submit Your AI Win</a>
+              <a href="#wall" class="button button-light">Browse the Wall</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="Campaign counter">
+            <div id="counter" class="counter">0</div>
+            <p class="counter-label">approved AI Wins reported on the way to 10,000,000</p>
+            <div class="mini-wins" id="miniWins">
+              <div class="mini-win">Saved time on a task they had been avoiding.</div>
+              <div class="mini-win">Helped a small business communicate more clearly.</div>
+              <div class="mini-win">Made a first AI attempt feel useful instead of intimidating.</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="band band-white" id="how">
+        <div class="container">
+          <div class="section-head">
+            <h2>Participation becomes proof.</h2>
+            <p class="section-copy">The movement grows when people can see someone like them using AI for a concrete win. No jargon. No hype. Just useful examples.</p>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <div class="step-number">1</div>
+              <h3>Submit the win</h3>
+              <p>Tell the story in one or two plain-English sentences.</p>
+            </article>
+            <article class="step">
+              <div class="step-number">2</div>
+              <h3>Share the card</h3>
+              <p>Download a branded image and copy a ready-to-post caption.</p>
+            </article>
+            <article class="step">
+              <div class="step-number">3</div>
+              <h3>Build the wall</h3>
+              <p>Approved wins become searchable proof for the next person.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band band-navy" id="submit">
+        <div class="container">
+          <div class="section-head">
+            <h2>Report your AI Win.</h2>
+            <p class="section-copy">The best wins are small, specific, and real: a task finished, a customer helped, a family problem simplified, or a first step finally taken.</p>
+          </div>
+          <div class="form-layout">
+            <form class="form-shell" id="winForm">
+              <div class="form-grid">
+                <label>
+                  <span class="field-label">First name</span>
+                  <input name="firstName" autocomplete="given-name" required maxlength="80" />
+                </label>
+                <label>
+                  <span class="field-label">City/state or online</span>
+                  <input name="location" maxlength="120" placeholder="Phoenix, AZ" />
+                </label>
+                <label>
+                  <span class="field-label">I am a...</span>
+                  <input name="role" maxlength="120" placeholder="parent, teacher, owner, nurse..." />
+                </label>
+                <label>
+                  <span class="field-label">Category</span>
+                  <select name="category">
+                    <option value="first-win">First AI Win</option>
+                    <option value="work">Work</option>
+                    <option value="small-business">Small Business</option>
+                    <option value="family">Family</option>
+                    <option value="school">School</option>
+                    <option value="creativity">Creativity</option>
+                    <option value="money">Money</option>
+                    <option value="health">Health</option>
+                    <option value="community">Community</option>
+                  </select>
+                </label>
+                <label class="field-full">
+                  <span class="field-label">What did AI help you do?</span>
+                  <textarea name="winText" required maxlength="420" placeholder="Example: I used AI to write clearer appointment reminders for my dental office."></textarea>
+                </label>
+                <label class="field-full">
+                  <span class="field-label">What changed because of it?</span>
+                  <textarea name="outcomeText" maxlength="280" placeholder="Example: Patients understood the message better and our front desk saved time."></textarea>
+                </label>
+                <label class="checkline field-full">
+                  <input type="checkbox" name="permissionPublic" required />
+                  <span>You may include this win on the public 10 Million AI Wins wall.</span>
+                </label>
+                <label class="checkline field-full">
+                  <input type="checkbox" name="permissionSocial" />
+                  <span>You may consider this win for social posts, media examples, or campaign highlights.</span>
+                </label>
+              </div>
+              <p class="form-note">Submissions are reviewed before appearing publicly. You still get your share card immediately.</p>
+              <button class="button" type="submit">Create My Share Card</button>
+              <p class="status-line" id="formStatus" role="status"></p>
+            </form>
+
+            <aside class="share-card-preview" aria-label="Share card preview">
+              <canvas id="shareCanvas" width="1080" height="1080"></canvas>
+              <div class="share-actions">
+                <button class="button button-flat" id="downloadCard" type="button">Download Card</button>
+                <button class="button button-flat" id="copyCaption" type="button">Copy Caption</button>
+              </div>
+              <p class="status-line" id="shareStatus">Your card will update after you submit.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="band band-white" id="wall">
+        <div class="container">
+          <div class="section-head">
+            <h2>The Win Wall</h2>
+            <p class="section-copy">Browse proof that practical AI is already helping people in normal, useful ways.</p>
+          </div>
+          <div class="wall-tools">
+            <input id="searchWins" type="search" placeholder="Search by use case, role, city, or phrase" />
+            <select id="filterCategory" aria-label="Filter by category">
+              <option value="all">All categories</option>
+              <option value="first-win">First AI Win</option>
+              <option value="work">Work</option>
+              <option value="small-business">Small Business</option>
+              <option value="family">Family</option>
+              <option value="school">School</option>
+              <option value="creativity">Creativity</option>
+              <option value="money">Money</option>
+              <option value="health">Health</option>
+              <option value="community">Community</option>
+            </select>
+          </div>
+          <div class="win-grid" id="winGrid">
+            <div class="empty-state">Loading approved wins...</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <strong>10 Million AI Wins</strong>
+        <span>Built for practical AI confidence across America.</span>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.querySelector('#winForm');
+      const formStatus = document.querySelector('#formStatus');
+      const shareStatus = document.querySelector('#shareStatus');
+      const canvas = document.querySelector('#shareCanvas');
+      const ctx = canvas.getContext('2d');
+      const downloadButton = document.querySelector('#downloadCard');
+      const copyCaptionButton = document.querySelector('#copyCaption');
+      const winGrid = document.querySelector('#winGrid');
+      const counter = document.querySelector('#counter');
+      const searchWins = document.querySelector('#searchWins');
+      const filterCategory = document.querySelector('#filterCategory');
+      let latestShare = {
+        firstName: 'Your Name',
+        location: 'Your Town',
+        quote: 'Your AI Win will appear here after you submit.',
+        caption: 'I reported an AI Win. Join the movement at https://10millionwins.com'
+      };
+
+      function wrapText(text, x, y, maxWidth, lineHeight, maxLines) {
+        const words = String(text || '').split(' ');
+        let line = '';
+        let lines = 0;
+        for (const word of words) {
+          const test = line ? `${line} ${word}` : word;
+          if (ctx.measureText(test).width > maxWidth && line) {
+            ctx.fillText(line, x, y);
+            line = word;
+            y += lineHeight;
+            lines += 1;
+            if (lines >= maxLines - 1) break;
+          } else {
+            line = test;
+          }
+        }
+        if (line && lines < maxLines) ctx.fillText(line, x, y);
+      }
+
+      function drawShareCard(data = latestShare) {
+        ctx.fillStyle = '#07172f';
+        ctx.fillRect(0, 0, 1080, 1080);
+        const gradient = ctx.createLinearGradient(0, 0, 1080, 1080);
+        gradient.addColorStop(0, 'rgba(33, 97, 255, 0.4)');
+        gradient.addColorStop(0.55, 'rgba(50, 211, 255, 0.18)');
+        gradient.addColorStop(1, 'rgba(255, 122, 26, 0.22)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 1080, 1080);
+
+        ctx.fillStyle = '#ffd23f';
+        ctx.fillRect(72, 72, 174, 126);
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 8;
+        ctx.strokeRect(72, 72, 174, 126);
+        ctx.fillStyle = '#07172f';
+        ctx.font = '900 42px Inter, sans-serif';
+        ctx.fillText('10M', 112, 149);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 42px Inter, sans-serif';
+        ctx.fillText('I reported an AI Win', 72, 298);
+
+        ctx.fillStyle = '#ffd23f';
+        ctx.font = '900 92px Inter, sans-serif';
+        wrapText(`"${data.quote}"`, 72, 432, 900, 104, 4);
+
+        ctx.fillStyle = 'rgba(255,255,255,0.86)';
+        ctx.font = '800 34px Inter, sans-serif';
+        ctx.fillText(`- ${data.firstName}${data.location ? `, ${data.location}` : ''}`, 72, 870);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 44px Inter, sans-serif';
+        ctx.fillText('10 Million AI Wins', 72, 980);
+        ctx.fillStyle = 'rgba(255,255,255,0.74)';
+        ctx.font = '700 28px Inter, sans-serif';
+        ctx.fillText('10millionwins.com', 72, 1022);
+      }
+
+      function categoryLabel(value) {
+        return String(value || 'first-win').replace(/-/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
+      }
+
+      function renderWins(wins) {
+        if (!wins.length) {
+          winGrid.innerHTML = '<div class="empty-state">No approved wins match that search yet.</div>';
+          return;
+        }
+
+        winGrid.innerHTML = wins.map((win) => `
+          <article class="win-card">
+            <div>
+              <div class="win-meta">
+                <span class="pill ${win.featured ? 'pill-yellow' : ''}">${categoryLabel(win.category)}</span>
+                ${win.featured ? '<span class="pill pill-yellow">Featured</span>' : ''}
+              </div>
+              <p class="win-quote">"${escapeHtml(win.quote)}"</p>
+            </div>
+            <p class="win-person">${escapeHtml(win.firstName)}${win.location ? ` - ${escapeHtml(win.location)}` : ''}</p>
+          </article>
+        `).join('');
+      }
+
+      function escapeHtml(value) {
+        return String(value || '').replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[char]);
+      }
+
+      async function loadWins() {
+        const params = new URLSearchParams();
+        if (filterCategory.value !== 'all') params.set('category', filterCategory.value);
+        if (searchWins.value.trim()) params.set('q', searchWins.value.trim());
+        const res = await fetch(`/api/wins?${params.toString()}`);
+        const data = await res.json();
+        counter.textContent = Number(data.stats?.approved || 0).toLocaleString();
+        renderWins(data.wins || []);
+      }
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        formStatus.textContent = 'Submitting...';
+        const fields = new FormData(form);
+        const payload = {
+          firstName: fields.get('firstName'),
+          location: fields.get('location'),
+          role: fields.get('role'),
+          category: fields.get('category'),
+          winText: fields.get('winText'),
+          outcomeText: fields.get('outcomeText'),
+          permissionPublic: fields.get('permissionPublic') === 'on',
+          permissionSocial: fields.get('permissionSocial') === 'on'
+        };
+
+        const res = await fetch('/api/wins', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          formStatus.textContent = data.error || 'Something went wrong.';
+          return;
+        }
+
+        latestShare = {
+          firstName: data.win.firstName,
+          location: data.win.location,
+          quote: data.win.quote,
+          caption: data.share.caption
+        };
+        drawShareCard(latestShare);
+        formStatus.textContent = 'Submitted. Your win is in review, and your share card is ready.';
+        shareStatus.textContent = 'Ready to download or copy.';
+        form.reset();
+        loadWins();
+      });
+
+      downloadButton.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = '10-million-ai-wins-card.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+
+      copyCaptionButton.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(latestShare.caption);
+        shareStatus.textContent = 'Caption copied.';
+      });
+
+      searchWins.addEventListener('input', () => {
+        window.clearTimeout(searchWins._timer);
+        searchWins._timer = window.setTimeout(loadWins, 220);
+      });
+      filterCategory.addEventListener('change', loadWins);
+
+      drawShareCard();
+      loadWins().catch(() => {
+        winGrid.innerHTML = '<div class="empty-state">The Win Wall is warming up. Try again shortly.</div>';
+      });
+    </script>
+  </body>
+</html>
