@@ -26,6 +26,18 @@ export const onRequestPatch: PagesFunction<Env> = async ({ request, params, env 
   }
 
   if (action === 'promote' || action === 'unpromote') {
+    if (action === 'promote') {
+      const row = await env.DB.prepare(`
+        SELECT permission_social
+        FROM wins
+        WHERE public_id = ?
+        LIMIT 1
+      `).bind(id).first();
+      if (!row) return json({ error: 'Submission not found.' }, { status: 404 });
+      if (Number(row.permission_social || 0) !== 1) {
+        return json({ error: 'Promote is unavailable because the submitter did not grant social/media permission.' }, { status: 400 });
+      }
+    }
     await env.DB.prepare(`
       UPDATE wins
       SET promote = ?, promoted_at = ?, updated_at = ?

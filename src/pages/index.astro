@@ -53,7 +53,7 @@ import '../styles/global.css';
           </div>
           <aside class="hero-panel" aria-label="Campaign counter">
             <div id="counter" class="counter">0</div>
-            <p class="counter-label">approved AI Wins reported on the way to 10,000,000</p>
+            <p class="counter-label">AI Wins reported on the way to 10,000,000</p>
             <div class="mini-wins" id="miniWins">
               <div class="mini-win">Saved time on a task they had been avoiding.</div>
               <div class="mini-win">Helped a small business communicate more clearly.</div>
@@ -131,10 +131,6 @@ import '../styles/global.css';
                 <label class="field-full">
                   <span class="field-label">What changed because of it?</span>
                   <textarea name="outcomeText" maxlength="280" placeholder="Example: Patients understood the message better and our front desk saved time."></textarea>
-                </label>
-                <label class="checkline field-full">
-                  <input type="checkbox" name="permissionPublic" required />
-                  <span>You may include this win on the public 10 Million AI Wins wall.</span>
                 </label>
                 <label class="checkline field-full">
                   <input type="checkbox" name="permissionSocial" />
@@ -325,7 +321,6 @@ import '../styles/global.css';
           category: fields.get('category'),
           winText: fields.get('winText'),
           outcomeText: fields.get('outcomeText'),
-          permissionPublic: fields.get('permissionPublic') === 'on',
           permissionSocial: fields.get('permissionSocial') === 'on'
         };
 

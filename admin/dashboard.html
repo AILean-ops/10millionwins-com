@@ -116,6 +116,13 @@
         background: #fff1f1;
         color: #8f1518;
       }
+      button[disabled] {
+        border-color: var(--line);
+        background: #eef1f5;
+        color: #8b96a7;
+        box-shadow: none;
+        cursor: not-allowed;
+      }
       button.dark {
         background: var(--navy);
         color: var(--white);
@@ -282,7 +289,12 @@
           queue.innerHTML = '<div class="empty">Nothing in this queue.</div>';
           return;
         }
-        queue.innerHTML = items.map((item) => `
+        queue.innerHTML = items.map((item) => {
+          const canPromote = Number(item.permission_social || 0) === 1;
+          const promoteAction = item.promote ? 'unpromote' : 'promote';
+          const promoteLabel = item.promote ? 'Unpromote' : 'Promote!';
+          const promoteDisabled = !canPromote && !item.promote;
+          return `
           <article class="submission" data-id="${item.public_id}">
             <div>
               <div class="meta">
@@ -290,6 +302,7 @@
                 <span class="pill">${label(item.category)}</span>
                 ${item.promote ? '<span class="pill yellow">Promote</span>' : ''}
                 ${item.featured ? '<span class="pill yellow">Featured</span>' : ''}
+                ${canPromote ? '<span class="pill green">Social OK</span>' : '<span class="pill red">No social permission</span>'}
               </div>
               <p class="quote">"${escapeHtml(item.quote)}"</p>
               <p class="raw"><strong>${escapeHtml(item.first_name)}</strong>${item.location ? ` - ${escapeHtml(item.location)}` : ''}${item.role ? ` - ${escapeHtml(item.role)}` : ''}</p>
@@ -308,14 +321,15 @@
               <div class="actions">
                 <button class="primary" data-action="approve">Approve</button>
                 <button class="danger" data-action="reject">Reject</button>
-                <button data-action="${item.promote ? 'unpromote' : 'promote'}">${item.promote ? 'Unpromote' : 'Promote!'}</button>
+                <button data-action="${promoteAction}" ${promoteDisabled ? 'disabled title="Submitter did not grant social/media permission."' : ''}>${promoteLabel}</button>
                 <button data-action="${item.featured ? 'unfeature' : 'feature'}">${item.featured ? 'Unfeature' : 'Feature'}</button>
                 <button data-action="edit">Save Edit</button>
                 <button data-copy>Copy Caption</button>
               </div>
             </div>
           </article>
-        `).join('');
+        `;
+        }).join('');
       }
 
       async function load() {

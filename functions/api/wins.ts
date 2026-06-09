@@ -67,17 +67,16 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const category = cleanText(input.category, 40);
   const winText = cleanText(input.winText, 420);
   const outcomeText = cleanText(input.outcomeText, 280);
-  const permissionPublic = Boolean(input.permissionPublic);
   const permissionSocial = Boolean(input.permissionSocial);
 
-  if (!firstName || !winText || !permissionPublic) {
-    return json({ error: 'First name, win, and public permission are required.' }, { status: 400 });
+  if (!firstName || !winText) {
+    return json({ error: 'First name and win are required.' }, { status: 400 });
   }
 
   const normalizedCategory = CATEGORIES.has(category) ? category : 'first-win';
   const id = crypto.randomUUID();
   const publicId = makePublicId();
-  const quote = buildQuote(winText, outcomeText);
+  const quote = buildQuote(winText);
   const searchText = [firstName, location, role, normalizedCategory, winText, outcomeText, quote]
     .join(' ')
     .toLowerCase();
@@ -98,7 +97,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     winText,
     outcomeText || null,
     quote,
-    permissionPublic ? 1 : 0,
+    1,
     permissionSocial ? 1 : 0,
     searchText
   ).run();

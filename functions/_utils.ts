@@ -53,9 +53,10 @@ export function makePublicId() {
   return Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
-export function buildQuote(winText: string, outcomeText: string) {
-  const base = outcomeText ? `${winText} ${outcomeText}` : winText;
-  return base.length > 150 ? `${base.slice(0, 147).trim()}...` : base;
+export function buildQuote(winText: string) {
+  const normalized = cleanText(winText, 420);
+  const match = normalized.match(/^.*?[.!?](?:\s|$)/);
+  return (match ? match[0] : normalized).trim();
 }
 
 export function statusFromAction(action: string) {
