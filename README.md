@@ -23,7 +23,7 @@ npm run admin
 The local admin dashboard can run on localhost or the Mac mini Tailscale interface.
 
 - Mac/local command: `set -a; source admin/.admin-session; set +a; npm run admin`
-- Phone URL when launchd is running: `http://100.84.92.118:8793/`
+- Phone URL through the Morning Brief Tailscale server: `http://100.84.92.118:8791/wins-admin/`
 
 ## Required Cloudflare Setup
 
@@ -49,4 +49,4 @@ It runs `admin/start-admin.sh`, which sources the ignored `admin/.admin-session`
 - `TEN_MILLION_WINS_ADMIN_PORT`
 - `TEN_MILLION_WINS_ALLOWED_CLIENTS`
 
-The service is intended for Tailscale-only use and should allow Brian's iPhone Tailscale IP plus localhost.
+The Node service should stay localhost-only. Brian's phone reaches it through the Morning Brief Tailscale server proxy at `/wins-admin/` and `/admin-api/`.
