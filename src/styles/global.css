@@ -474,17 +474,32 @@ textarea {
   margin-top: 5px;
 }
 
-.form-note,
 .status-line {
   color: var(--muted);
   font-size: 0.95rem;
   font-weight: 650;
 }
 
+.form-note {
+  margin: 12px 0 0;
+  color: rgba(255,255,255,0.58);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
 .share-card-preview {
   position: sticky;
   top: 104px;
   padding: 20px;
+}
+
+.share-heading {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-size: 1.05rem;
+  font-weight: 950;
+  text-transform: uppercase;
 }
 
 #shareCanvas {

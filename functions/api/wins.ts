@@ -117,7 +117,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     },
     share: {
       title: 'I reported an AI Win',
-      caption: `${firstName} reported an AI Win: "${quote}" Join the movement at ${env.PUBLIC_SITE_URL || 'https://10millionwins.com'}`,
+      caption: `I just shared an AI win! Join the movement at ${env.PUBLIC_SITE_URL || 'https://10millionwins.com'}`,
       url: env.PUBLIC_SITE_URL || 'https://10millionwins.com'
     }
   }, { status: 201 });

@@ -137,12 +137,13 @@ import '../styles/global.css';
                   <span><strong>Yes!</strong> Use my win in your social posts, media examples, and campaign highlights!</span>
                 </label>
               </div>
-              <p class="form-note">Submissions are reviewed before appearing publicly. You still get your share card immediately.</p>
               <button class="button" type="submit">Create My Share Card</button>
+              <p class="form-note">Submissions are reviewed before appearing publicly. You still get your share card immediately.</p>
               <p class="status-line" id="formStatus" role="status"></p>
             </form>
 
             <aside class="share-card-preview" aria-label="Share card preview">
+              <p class="share-heading">Share this on social media!</p>
               <canvas id="shareCanvas" width="1080" height="1080"></canvas>
               <div class="share-actions">
                 <button class="button button-flat" id="downloadCard" type="button">Download Card</button>
@@ -205,7 +206,7 @@ import '../styles/global.css';
         firstName: 'Your Name',
         location: 'Your Town',
         quote: 'Your AI Win will appear here after you submit.',
-        caption: 'I reported an AI Win. Join the movement at https://10millionwins.com'
+        caption: 'I just shared an AI win! Join the movement at https://10millionwins.com'
       };
 
       function wrapText(text, x, y, maxWidth, lineHeight, maxLines) {
