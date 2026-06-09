@@ -482,10 +482,14 @@ textarea {
 
 .form-note {
   margin: 12px 0 0;
-  color: rgba(255,255,255,0.58);
+  color: rgba(99, 112, 131, 0.82);
   font-size: 0.82rem;
   font-weight: 500;
   line-height: 1.45;
+}
+
+.form-shell > .button {
+  margin-top: 20px;
 }
 
 .share-card-preview {
