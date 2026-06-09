@@ -5,8 +5,15 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const port = Number(process.env.TEN_MILLION_WINS_ADMIN_PORT || 8791);
+const host = process.env.TEN_MILLION_WINS_ADMIN_HOST || '127.0.0.1';
 const apiBase = process.env.TEN_MILLION_WINS_API_BASE || 'https://10millionwins.com';
 const adminToken = process.env.TEN_MILLION_WINS_ADMIN_TOKEN || process.env.ADMIN_TOKEN || '';
+const allowedClients = new Set(
+  (process.env.TEN_MILLION_WINS_ALLOWED_CLIENTS || '127.0.0.1,::1')
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean)
+);
 
 const types = new Map([
   ['.html', 'text/html; charset=utf-8'],
@@ -52,6 +59,19 @@ function readBody(request) {
 
 const server = createServer(async (request, response) => {
   try {
+    const remote = normalizeAddress(request.socket.remoteAddress || '');
+    if (allowedClients.size && !allowedClients.has(remote)) {
+      response.writeHead(403, { 'content-type': 'text/plain; charset=utf-8' });
+      response.end('This dashboard is limited to approved Tailscale clients.');
+      return;
+    }
+
+    if (request.url === '/health') {
+      response.writeHead(200, { 'content-type': 'application/json; charset=utf-8' });
+      response.end(JSON.stringify({ ok: true, host, port, apiBase }));
+      return;
+    }
+
     const url = new URL(request.url || '/', `http://127.0.0.1:${port}`);
     if (url.pathname.startsWith('/admin-api/')) {
       await proxy(request, response);
@@ -73,7 +93,13 @@ const server = createServer(async (request, response) => {
   }
 });
 
-server.listen(port, '127.0.0.1', () => {
-  console.log(`10 Million AI Wins admin dashboard: http://127.0.0.1:${port}`);
+function normalizeAddress(value) {
+  if (value.startsWith('::ffff:')) return value.slice('::ffff:'.length);
+  return value;
+}
+
+server.listen(port, host, () => {
+  console.log(`10 Million AI Wins admin dashboard: http://${host}:${port}`);
   console.log(`API base: ${apiBase}`);
+  console.log(`Allowed clients: ${Array.from(allowedClients).join(', ')}`);
 });

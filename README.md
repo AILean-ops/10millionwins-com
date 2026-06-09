@@ -20,7 +20,10 @@ npm run pages:dev
 npm run admin
 ```
 
-The admin dashboard defaults to `http://127.0.0.1:8791`.
+The local admin dashboard can run on localhost or the Mac mini Tailscale interface.
+
+- Mac/local command: `set -a; source admin/.admin-session; set +a; npm run admin`
+- Phone URL when launchd is running: `http://100.84.92.118:8793/`
 
 ## Required Cloudflare Setup
 
@@ -33,3 +36,17 @@ The admin dashboard defaults to `http://127.0.0.1:8791`.
 ## Data Policy
 
 Submissions are not published until approved. The share card is available immediately to the submitter, but the public wall only shows approved rows.
+
+## Phone Approval Dashboard
+
+The LaunchAgent source is `admin/com.aileansolutions.10millionwins-admin.plist`.
+
+It runs `admin/start-admin.sh`, which sources the ignored `admin/.admin-session` file for:
+
+- `TEN_MILLION_WINS_ADMIN_TOKEN`
+- `TEN_MILLION_WINS_API_BASE`
+- `TEN_MILLION_WINS_ADMIN_HOST`
+- `TEN_MILLION_WINS_ADMIN_PORT`
+- `TEN_MILLION_WINS_ALLOWED_CLIENTS`
+
+The service is intended for Tailscale-only use and should allow Brian's iPhone Tailscale IP plus localhost.
