@@ -104,8 +104,8 @@ a {
 }
 
 .brand-mark {
-  width: 44px;
-  height: 44px;
+  width: 54px;
+  height: 54px;
   display: grid;
   place-items: center;
   border-radius: 14px;
@@ -113,7 +113,8 @@ a {
   border: 3px solid var(--navy);
   box-shadow: 5px 5px 0 var(--navy);
   font-family: "Anton", sans-serif;
-  font-size: 1.22rem;
+  font-size: 1.32rem;
+  letter-spacing: 0.04em;
   line-height: 1;
   transform: rotate(-4deg);
 }
@@ -634,6 +635,12 @@ textarea {
 
   .brand {
     font-size: 0.96rem;
+  }
+
+  .brand-mark {
+    width: 48px;
+    height: 48px;
+    font-size: 1.18rem;
   }
 
   body .button {
