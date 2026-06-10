@@ -209,23 +209,57 @@ import '../styles/global.css';
         caption: 'I just shared an AI win! Join the movement at https://10millionwins.com'
       };
 
-      function wrapText(text, x, y, maxWidth, lineHeight, maxLines) {
-        const words = String(text || '').split(' ');
+      function sentenceForCard(text) {
+        const clean = String(text || '').replace(/\s+/g, ' ').trim();
+        const firstSentence = clean.match(/^(.+?[.!?])(?:\s|$)/);
+        return firstSentence ? firstSentence[1] : clean;
+      }
+
+      function wrapLines(text, maxWidth) {
+        const words = String(text || '').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
+        const lines = [];
         let line = '';
-        let lines = 0;
         for (const word of words) {
           const test = line ? `${line} ${word}` : word;
           if (ctx.measureText(test).width > maxWidth && line) {
-            ctx.fillText(line, x, y);
+            lines.push(line);
             line = word;
-            y += lineHeight;
-            lines += 1;
-            if (lines >= maxLines - 1) break;
           } else {
             line = test;
           }
         }
-        if (line && lines < maxLines) ctx.fillText(line, x, y);
+        if (line) lines.push(line);
+        return lines;
+      }
+
+      function fitQuote(text, maxWidth, maxHeight) {
+        const candidates = [String(text || '').trim(), sentenceForCard(text)].filter(Boolean);
+        for (const candidate of [...new Set(candidates)]) {
+          for (let size = 88; size >= 32; size -= 2) {
+            const lineHeight = Math.round(size * 1.13);
+            const maxLines = Math.floor(maxHeight / lineHeight);
+            ctx.font = `900 ${size}px Inter, sans-serif`;
+            const lines = wrapLines(`"${candidate}"`, maxWidth);
+            if (lines.length <= maxLines) {
+              return { lines, size, lineHeight };
+            }
+          }
+        }
+
+        ctx.font = '900 32px Inter, sans-serif';
+        const lineHeight = 37;
+        const maxLines = Math.floor(maxHeight / lineHeight);
+        return {
+          lines: wrapLines(`"${sentenceForCard(text)}"`, maxWidth).slice(0, maxLines),
+          size: 32,
+          lineHeight
+        };
+      }
+
+      function drawWrappedLines(lines, x, y, lineHeight) {
+        lines.forEach((line, index) => {
+          ctx.fillText(line, x, y + index * lineHeight);
+        });
       }
 
       function drawShareCard(data = latestShare) {
@@ -252,8 +286,9 @@ import '../styles/global.css';
         ctx.fillText('I reported an AI Win', 72, 298);
 
         ctx.fillStyle = '#ffd23f';
-        ctx.font = '900 92px Inter, sans-serif';
-        wrapText(`"${data.quote}"`, 72, 432, 900, 104, 4);
+        const quoteFit = fitQuote(data.quote, 936, 390);
+        ctx.font = `900 ${quoteFit.size}px Inter, sans-serif`;
+        drawWrappedLines(quoteFit.lines, 72, 420, quoteFit.lineHeight);
 
         ctx.fillStyle = 'rgba(255,255,255,0.86)';
         ctx.font = '800 34px Inter, sans-serif';
